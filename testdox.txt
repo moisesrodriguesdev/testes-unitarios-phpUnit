@@ -1,0 +1,8 @@
+Avaliador (Alura\Leilao\Tests\Service\Avaliador)
+ [x] Equals maior valor with data set "ordem-crescente"
+ [x] Equals maior valor with data set "ordem-aleatoria"
+ [x] Equals menor valor with data set "ordem-crescente"
+ [x] Equals menor valor with data set "ordem-aleatoria"
+ [x] Get 3 maiores lances with data set "ordem-crescente"
+ [x] Get 3 maiores lances with data set "ordem-aleatoria"
+
