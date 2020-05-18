@@ -11,4 +11,6 @@ Avaliador (Alura\Leilao\Tests\Service\Avaliador)
  [x] Equals menor valor with data set "ordem-aleatoria"
  [x] Get 3 maiores lances with data set "ordem-crescente"
  [x] Get 3 maiores lances with data set "ordem-aleatoria"
+ [x] Leilao vazio nao pode ser avaliado
+ [x] Leilao finalizado nao pode ser avaliado
 

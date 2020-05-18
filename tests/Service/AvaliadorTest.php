@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class AvaliadorTest extends TestCase
 {
+    /** @var Avaliador  */
     private $leiloeiro;
 
     public static function setUpBeforeClass(): void
@@ -76,9 +77,31 @@ class AvaliadorTest extends TestCase
         $this->assertEquals(120, $maioresLances[2]->getValor());
     }
 
+    public function testLeilaoVazioNaoPodeSerAvaliado()
+    {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage('Não é possivel avaliar o leilão');
+        $this->expectExceptionCode('400');
+        $leilao = new Leilao('fuscao preto');
+        $this->leiloeiro->avalia($leilao);
+
+    }
+
+    public function testLeilaoFinalizadoNaoPodeSerAvaliado()
+    {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage('Leilão já finalizado');
+
+        $leilao = new Leilao('Caneta bic falhando');
+        $leilao->recebeLance(new Lance(new Usuario('Rodrigues'), 200));
+        $leilao->finaliza();
+
+        $this->leiloeiro->avalia($leilao);
+    }
+
     public function leilaoEmOrdemCrescente()
     {
-        $leilao = new Leilao('Caralho aquático');
+        $leilao = new Leilao('Caneta bic falhando');
 
         $usuario = new Usuario('MOISES');
         $usuario2 = new Usuario('Joacas');
@@ -97,7 +120,7 @@ class AvaliadorTest extends TestCase
 
     public function leilaoEmOrdemDecrescente()
     {
-        $leilao = new Leilao('Caralho aquático');
+        $leilao = new Leilao('Caneta bic falhando');
 
         $usuario = new Usuario('MOISES');
         $usuario2 = new Usuario('Joacas');
@@ -116,7 +139,7 @@ class AvaliadorTest extends TestCase
 
     public function leilaoEmOrdemAleatoria()
     {
-        $leilao = new Leilao('Caralho aquático');
+        $leilao = new Leilao('Caneta bic falhando');
 
         $usuario = new Usuario('MOISES');
         $usuario2 = new Usuario('Joacas');
